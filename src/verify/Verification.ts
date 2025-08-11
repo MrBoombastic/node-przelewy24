@@ -1,16 +1,17 @@
-import { Currency } from '../enums/Currency';
+import {Currency} from '../enums';
+
 /**
  * Transaction verification
  *
  * @export
- * @interface TransactionVerification
+ * @interface Verification
  */
 export interface Verification {
     /**
      * Session ID from merchant's system
      *
      * @type {string}
-     * @memberof TransactionVerification
+     * @memberof Verification
      */
     sessionId: string;
 
@@ -19,7 +20,7 @@ export interface Verification {
      * unit, e.g. 1.23 PLN = 123
      *
      * @type {number}
-     * @memberof TransactionVerification
+     * @memberof Verification
      */
     amount: number;
 
@@ -27,7 +28,7 @@ export interface Verification {
      * Currency
      *
      * @type {string}
-     * @memberof TransactionVerification
+     * @memberof Verification
      */
     currency: string;
 
@@ -35,7 +36,7 @@ export interface Verification {
      * Id of an order
      *
      * @type {number}
-     * @memberof TransactionVerification
+     * @memberof Verification
      */
     orderId: number;
 }

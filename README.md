@@ -1,4 +1,4 @@
-# Przelewy24 for NodeJS
+# Przelewy24 for Node.js
 
 ![](https://img.shields.io/github/license/mrboombastic/node-przelewy24) ![](https://img.shields.io/github/last-commit/MrBoombastic/node-przelewy24)
 
@@ -77,8 +77,8 @@ const order: Order = {
   email: "john.doe@example.com",
   country: Country.Poland,
   language: Language.PL,
-  urlReturn: "http://myawesomeapp.com/continue",
-  urlStatus: "http://myawesomeapp.com/p24callback", // callback to get notification
+    urlReturn: "https://myawesomeapp.com/continue",
+    urlStatus: "https://myawesomeapp.com/p24callback", // callback to get notification
   timeLimit: 15, // 15min
   encoding: Encoding.UTF8,
 }

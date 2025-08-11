@@ -31,7 +31,7 @@ export enum Country {
     Island = 'IS',
     Lithuania = 'LT',
     Latvia = 'LV',
-    Luxemburg = 'LU',
+    Luxembourg = 'LU',
     Malta = 'MT',
     USA = 'US',
     Canada = 'CA',

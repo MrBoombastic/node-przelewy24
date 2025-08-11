@@ -1,6 +1,7 @@
 MIT License
 
 Copyright (c) 2019 Ingame
+
 Copyright (c) 2025 MrBoombastic
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

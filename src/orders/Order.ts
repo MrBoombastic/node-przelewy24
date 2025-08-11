@@ -1,10 +1,6 @@
-import { Currency } from "../enums/Currency";
-import { Country } from '../enums/Country';
-import { Language } from "../enums/Language";
-import { Channel } from "../enums/Channel";
-import { Encoding } from '../enums/Encoding';
-import { CartItem } from './CartItem';
-import { Additional } from "./Additional";
+import {Channel, Country, Currency, Encoding, Language} from "../enums";
+import {CartItem} from './CartItem';
+import {Additional} from "./Additional";
 
 /**
  * Represents an order
@@ -150,7 +146,7 @@ export interface Order {
     channel?: Channel,
 
     /**
-     * Parameter determines wheter a user should wait for result of the transaction in the transaction 
+     * Parameter determines wheter a user should wait for result of the transaction in the transaction
      * service and be redirected back to the shop upon receiving confirmation or be redirected back to the shop immediately after payment.
      *
      * @type {boolean}
@@ -187,7 +183,7 @@ export interface Order {
     transferLabel?: string,
 
     /**
-     * The parameter is necessary while using SDK libraries. 
+     * The parameter is necessary while using SDK libraries.
      * The value passed in mobileLib parameter is always 1 and value passed in sdkVersion determines which version of library should be used.
      *
      * @type {number}

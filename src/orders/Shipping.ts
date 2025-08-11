@@ -1,4 +1,4 @@
-import { ShippingType } from "../enums/ShippingType";
+import {ShippingType} from "../enums";
 
 export interface Shipping {
     /**
