@@ -1,7 +1,5 @@
 # Przelewy24 for Node.js
 
-![](https://img.shields.io/github/license/mrboombastic/node-przelewy24) ![](https://img.shields.io/github/last-commit/MrBoombastic/node-przelewy24)
-
 Node.js Library for [**Przelewy24**](https://przelewy24.pl/).
 This library is written in TypeScript to provide the best typesafety.
 
@@ -14,46 +12,45 @@ This library provides an elegant way to create/verify transactions easily.
 
 ## Documentation
 
-Documentation can be read [here](https://ingameltd.github.io/node-przelewy24).
+No ugly or useless empty documentation. Reading [src/p24/P24.ts](src/p24/P24.ts) or examples below should be enough.
 
 ## Installation
 
 ```bash
-npm install --save @ingameltd/node-przelewy24
+npm install @mrboombastic/node-przelewy24 # Yes, this defaults to GitHub.com because why not... 
 ```
 
-## Typescript
+## Examples
 
 ### Importing
 
 ```typescript
 import {
-  P24,
-  Order,
-  Currency,
-  Country,
-  Language,
-  NotificationRequest,
-  Verification
-} from "@ingameltd/node-przelewy24";
+    P24,
+    Order,
+    Currency,
+    Country,
+    Language,
+    NotificationRequest,
+    Verification
+} from "node-przelewy24";
 ```
 
 ### Initialization
 
-- **merchantId**: ID given by P24
-- **posId**: Given by P24 (often this referees to Merchant ID)
-- **apiKey**: API Key from P24 panel (klucz do raportów)
+- **merchantId**: account ID given by P24
+- **posId**: given by P24 (often the same as merchant ID)
+- **apiKey**: API key from a P24 panel (sometimes called "key for reports")
 - **crcKey**: CRC value obtained from P24 panel
 
 ```typescript
-const p24 = new P24(
-  merchantId, 
-  posId,
-  apiKey,
-  crcKey, 
-  { 
-    sandbox: false // enable or disable sandbox
-  }
+const p24 = new P24({
+        merchantId: 0,
+        posId: 0,
+        apiKey: "sometimes-called-key-for-reports",
+        crcKey: "",
+        sandbox: false // enable or disable sandbox
+    }
 );
 ```
 
@@ -61,7 +58,7 @@ const p24 = new P24(
 
 ```typescript
 const result = await p24.testAccess();
-console.log(result); // true on success or an error being throw P24Error
+console.log(result); // true on success or throws P24Error
 ```
 
 ### Get payment link
@@ -70,17 +67,17 @@ Prepare the following details to initiate a payment
 
 ```typescript
 const order: Order = {
-  sessionId: "c837e1a3-c5a3-4e89-adf1-05faffd8913b",
+    sessionId: "c837e1a3-c5a3-4e89-adf1-05faffd8913b",
     amount: 1000, // Transaction amount expressed in lowest currency unit, e.g., 1.23 PLN = 123
-  currency: Currency.PLN,
-  description: "test order",
-  email: "john.doe@example.com",
-  country: Country.Poland,
-  language: Language.PL,
+    currency: Currency.PLN,
+    description: "testing order",
+    email: "john.doe@example.com",
+    country: Country.Poland,
+    language: Language.PL,
     urlReturn: "https://myawesomeapp.com/continue",
     urlStatus: "https://myawesomeapp.com/p24callback", // callback to get notification
-  timeLimit: 15, // 15min
-  encoding: Encoding.UTF8,
+    timeLimit: 15, // 15min
+    encoding: Encoding.UTF8,
 }
 const result = await p24.createTransaction(order)
 console.log(result) // prints a valid url to pay the payment or throws an error
@@ -97,7 +94,7 @@ const res = p24.verifyNotification(verify)
 console.log(res) // true when the Notification is valid
 ```
 
-### Verifies a transaction with P24
+### Verify a transaction with P24
 
 To accept the payment to your merchant account, after validating the Notification
 request, you need to verify the transaction with a P24 system.
@@ -116,22 +113,22 @@ const res = await p24.verifyTransaction(verifyRequest)
 console.log(res) // true on success otherwise P24Error
 ```
 
-### Refund a request
+### Refund requesting
 
 To refund the customer, you need to open up a refund request.
 
 ```typescript
 const ref = {
-  refundsUuid: '94c1fb0b-f40f-4201-b2a0-f4166839d06c',
-  requestId: 'afa379ac-c3ca-43d0-892f-e7a3f13ee4cc',
-  refunds: [
-    {
-        amount: 1000,
-        description: 'test',
-        orderId: 3030,
-        sessionId: 'c837e1a3-c5a3-4e89-adf1-05faffd8913b'
-    }
-  ],
+    refundsUuid: '94c1fb0b-f40f-4201-b2a0-f4166839d06c',
+    requestId: 'afa379ac-c3ca-43d0-892f-e7a3f13ee4cc',
+    refunds: [
+        {
+            amount: 1000,
+            description: 'testing',
+            orderId: 3030,
+            sessionId: 'c837e1a3-c5a3-4e89-adf1-05faffd8913b'
+        }
+    ],
 }
 
 const result = await p24.refund(ref)
@@ -143,6 +140,6 @@ console.log(result) // returns a SuccessResponse<RefundResult[]> where you can f
 Library provides a method to validate IP addresses with P24 backends.
 
 ```typescript
-const valid = Przelewy24.isIpValid("127.0.0.1");
+const valid = p24.isIpValid("127.0.0.1");
 console.log(valid); // false if IP is not from P24
 ```

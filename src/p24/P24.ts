@@ -25,51 +25,51 @@ import {RefundRequest, RefundResult} from '../refund';
  * @class P24
  */
 export class P24 {
-    private merchantId: number;
-    private posId: number;
-    private crcKey: string;
-    private apiKey: string;
     private client: AxiosInstance;
-    private baseUrl: string;
+    private readonly baseUrl: string;
     private options: P24Options;
-    private baseParameters: BaseParameters;
+    private readonly baseParameters: BaseParameters;
+
+    private isValidP24Options(options: any): options is P24Options {
+        return typeof options === 'object' &&
+            'merchantId' in options &&
+            typeof options.merchantId === 'number' &&
+            'posId' in options &&
+            typeof options.posId === 'number' &&
+            'crcKey' in options &&
+            typeof options.crcKey === 'string' &&
+            'apiKey' in options &&
+            typeof options.apiKey === 'string' &&
+            'sandbox' in options &&
+            typeof options.sandbox === 'boolean';
+    }
 
     /**
      * Creates an instance of Przelewy24.
-     * @param {number} merchantId Merchant ID given by Przelewy24
-     * @param {number} posId Shop ID (defaults to merchantId)
-     * @param {string} apiKey API Key from P24 panel(Klucz do raportów)
-     * @param {string} crcKey CRC key from P24 panel
-     * @param {P24Options} [options={ sandbox: false }] - additional options
+     * @param {P24Options} [options={ sandbox: false }] - all necessary options
      * @memberof P24
      */
     constructor(
-        merchantId: number,
-        posId: number,
-        apiKey: string,
-        crcKey: string,
-        options: P24Options = {sandbox: false}
+        options: P24Options = {sandbox: false, merchantId: 0, posId: 0, crcKey: '', apiKey: ''},
     ) {
-        this.merchantId = merchantId;
-        this.posId = posId;
-        this.crcKey = crcKey;
-        this.apiKey = apiKey;
+        if (!this.isValidP24Options(options)) {
+            throw new P24Error('Invalid P24Options provided', -1);
+        }
         this.options = options
-        if (!this.posId)
-            this.posId = this.merchantId;
+        if (!this.options.posId) this.options.posId = this.options.merchantId;
 
-        this.baseUrl = !this.options.sandbox ? ProductionUrl : SandboxUrl;
+        this.baseUrl = this.options.sandbox ? SandboxUrl : ProductionUrl;
 
         this.baseParameters = {
-            merchantId: this.merchantId,
-            posId: this.posId
+            merchantId: this.options.merchantId,
+            posId: this.options.posId
         };
 
         this.client = Axios.create({
             baseURL: `${this.baseUrl}/api/v1`,
             auth: {
-                username: posId.toString(),
-                password: this.apiKey
+                username: this.options.posId.toString(),
+                password: this.options.apiKey
             }
         });
     }
@@ -107,10 +107,10 @@ export class P24 {
         try {
             const hashData = {
                 sessionId: order.sessionId,
-                merchantId: this.merchantId,
+                merchantId: this.options.merchantId,
                 amount: order.amount,
                 currency: order.currency,
-                crc: this.crcKey
+                crc: this.options.crcKey
             }
 
             const sign = calculateSHA384(JSON.stringify(hashData))
@@ -152,7 +152,7 @@ export class P24 {
                 orderId: verification.orderId,
                 amount: verification.amount,
                 currency: verification.currency,
-                crc: this.crcKey
+                crc: this.options.crcKey
             }
 
             const sign = calculateSHA384(JSON.stringify(hashData))
@@ -186,7 +186,7 @@ export class P24 {
         const notificationHash = {
             ...notificationRequest,
             sign: undefined,
-            crc: this.crcKey
+            crc: this.options.crcKey
         }
         const sign = calculateSHA384(JSON.stringify(notificationHash))
         return sign === notificationRequest.sign

@@ -9,8 +9,7 @@
     "build": "tsc",
     "build:check": "tsc --noEmit",
     "watch": "tsc --watch",
-    "test": "echo 'no tests yet'",
-    "docs": "npx typedoc --out docs src"
+    "test": "echo 'no tests yet'"
   },
   "repository": {
     "type": "git",
@@ -22,7 +21,8 @@
     "p24",
     "P24",
     "przelewy",
-    "library"
+    "payments",
+    "api"
   ],
   "publishConfig": {
     "access": "public"
@@ -35,7 +35,6 @@
   "homepage": "https://github.com/MrBoombastic/node-przelewy24#readme",
   "devDependencies": {
     "@types/node": "^24.2.1",
-    "typedoc": "^0.28.10",
     "typescript": "^5.9.2"
   },
   "dependencies": {
