@@ -1,20 +1,20 @@
 # Przelewy24 for NodeJS
 
-![Build](https://github.com/ingameltd/node-przelewy24/workflows/Build/badge.svg) ![](https://img.shields.io/github/license/ingameltd/node-przelewy24) ![](https://img.shields.io/npm/v/@ingameltd/node-przelewy24) ![](https://img.shields.io/github/last-commit/ingameltd/node-przelewy24)
+![](https://img.shields.io/github/license/mrboombastic/node-przelewy24) ![](https://img.shields.io/github/last-commit/MrBoombastic/node-przelewy24)
 
-NodeJS Library for [**Przelewy24**](https://przelewy24.pl/). This library is written in Typescript to provide
-best typesafety.
+Node.js Library for [**Przelewy24**](https://przelewy24.pl/).
+This library is written in TypeScript to provide the best typesafety.
 
 This library provides an elegant way to create/verify transactions easily.
 
-**Note: Now this library uses the new REST API availiable in [here](https://developers.przelewy24.pl/index.php?en).**
+**Note: Now this library uses the new REST API available [here](https://developers.przelewy24.pl/index.php?en).**
 
-> Previous legacy API support is still availiable in **v1.1.1**
-> Future versions will support new REST API only, If you use legacy API please use that version
+> Previous legacy API support is still available in **v1.1.1**
+> Future versions will support new REST API only, If you use legacy API, please use that version
 
 ## Documentation
 
-Documentation can be in read [here](https://ingameltd.github.io/node-przelewy24).
+Documentation can be read [here](https://ingameltd.github.io/node-przelewy24).
 
 ## Installation
 
@@ -40,10 +40,10 @@ import {
 
 ### Initialization
 
-- **merchantId** : ID given by P24
-- **posId** : Given by P24(often this referes to Merchant ID)
-- **apiKey** : API Key from p24 panel(Klucz do raportów)
-- **crcKey** : CRC value obtained from p24 panel
+- **merchantId**: ID given by P24
+- **posId**: Given by P24 (often this referees to Merchant ID)
+- **apiKey**: API Key from P24 panel (klucz do raportów)
+- **crcKey**: CRC value obtained from P24 panel
 
 ```typescript
 const p24 = new P24(
@@ -66,12 +66,12 @@ console.log(result); // true on success or an error being throw P24Error
 
 ### Get payment link
 
-Prepare following details to initiate a payment
+Prepare the following details to initiate a payment
 
 ```typescript
 const order: Order = {
   sessionId: "c837e1a3-c5a3-4e89-adf1-05faffd8913b",
-  amount: 1000, // Transaction amount expressed in lowest currency unit, e.g. 1.23 PLN = 123
+    amount: 1000, // Transaction amount expressed in lowest currency unit, e.g., 1.23 PLN = 123
   currency: Currency.PLN,
   description: "test order",
   email: "john.doe@example.com",
@@ -100,7 +100,8 @@ console.log(res) // true when the Notification is valid
 ### Verifies a transaction with P24
 
 To accept the payment to your merchant account, after validating the Notification
-request, you need to verify the transaction with P24 system. **If you don't do that the funds will not be transferred into your account**.
+request, you need to verify the transaction with a P24 system.
+**If you don't do that, the funds will not be transferred into your account**.
 
 ```typescript
 // extract all information from callback request
@@ -115,9 +116,9 @@ const res = await p24.verifyTransaction(verifyRequest)
 console.log(res) // true on success otherwise P24Error
 ```
 
-### Refund a requst
+### Refund a request
 
-To refund the customer you need to open up a refund request
+To refund the customer, you need to open up a refund request.
 
 ```typescript
 const ref = {
@@ -139,9 +140,9 @@ console.log(result) // returns a SuccessResponse<RefundResult[]> where you can f
 
 ### Validate IP
 
-Library provides method to validate IP addresses with P24 backends
+Library provides a method to validate IP addresses with P24 backends.
 
 ```typescript
 const valid = Przelewy24.isIpValid("127.0.0.1");
-console.log(valid); // output false if IP is not from p24
+console.log(valid); // false if IP is not from P24
 ```

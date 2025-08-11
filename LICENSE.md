@@ -1,6 +1,7 @@
 MIT License
 
-Copyright (c) 2019 Kasun Vithanage
+Copyright (c) 2019 Ingame
+Copyright (c) 2025 MrBoombastic
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
