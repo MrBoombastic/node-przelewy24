@@ -23,14 +23,13 @@ export interface Verification {
      * @memberof Verification
      */
     amount: number;
-
     /**
      * Currency
      *
-     * @type {string}
+     * @type {Currency | string}
      * @memberof Verification
      */
-    currency: string;
+    currency: Currency | string;
 
     /**
      * Id of an order
