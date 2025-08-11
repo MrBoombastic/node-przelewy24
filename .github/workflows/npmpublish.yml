@@ -1,4 +1,4 @@
-name: Node.js Package
+name: Publish package
 
 on:
   release:
@@ -7,6 +7,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -15,8 +17,11 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn test
 
-  publish-gpr:
+  publish-gh:
     needs: build
+    permissions:
+      contents: read
+      packages: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
