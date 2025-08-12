@@ -26,8 +26,7 @@
     "api"
   ],
   "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "access": "public"
   },
   "author": "Ingame, MrBoombastic",
   "license": "MIT",
