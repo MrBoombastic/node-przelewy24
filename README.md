@@ -1,14 +1,8 @@
 # Przelewy24 for Node.js
 
 Node.js Library for [**Przelewy24**](https://przelewy24.pl/).
-This library is written in TypeScript to provide the best typesafety.
-
-This library provides an elegant way to create/verify transactions easily.
-
-**Note: Now this library uses the new REST API available [here](https://developers.przelewy24.pl/index.php?en).**
-
-> Previous legacy API support is still available in **v1.1.1**
-> Future versions will support new REST API only, If you use legacy API, please use that version
+This library is written in TypeScript to provide the best typesafety and provides an elegant way to create and verify
+transactions.
 
 ## Documentation
 
@@ -90,8 +84,8 @@ transaction order. You need to **verify** this Notification request before actua
 
 ```typescript
 const verify: NotificationRequest = req.body
-const res = p24.verifyNotification(verify)
-console.log(res) // true when the Notification is valid
+const result = p24.verifyNotification(verify)
+console.log(result) // true when the Notification is valid
 ```
 
 ### Verify a transaction with P24
@@ -109,8 +103,8 @@ const verifyRequest: Verification = {
     sessionId: 'c837e1a3-c5a3-4e89-adf1-05faffd8913b'
 }
 
-const res = await p24.verifyTransaction(verifyRequest)
-console.log(res) // true on success otherwise P24Error
+const result = await p24.verifyTransaction(verifyRequest)
+console.log(result) // true on success otherwise P24Error
 ```
 
 ### Refund requesting

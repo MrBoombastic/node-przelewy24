@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepublish": "yarn run build",
+    "prepare": "yarn run build",
+    "prepublishOnly": "yarn test && yarn build:check",
     "build": "tsc",
     "build:check": "tsc --noEmit",
     "watch": "tsc --watch",
@@ -25,7 +26,8 @@
     "api"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   },
   "author": "Ingame, MrBoombastic",
   "license": "MIT",
