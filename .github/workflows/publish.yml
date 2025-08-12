@@ -62,6 +62,6 @@ jobs:
           npm pkg set name="@MrBoombastic/node-przelewy24"
       - run: |
           npm pkg set publishConfig.registry="https://registry.npmjs.org/"
-      - run: yarn publish
+      - run: yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
