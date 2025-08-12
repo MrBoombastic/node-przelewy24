@@ -35,9 +35,8 @@ jobs:
           cache: 'yarn'
       - run: yarn install --frozen-lockfile
       - run: yarn build
-      - name: Update package name
-        run: |
-          npm pkg set name="@MrBoombastic/node-przelewy24"
+      - run: |
+          npm pkg set publishConfig.registry="https://npm.pkg.github.com/"
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
