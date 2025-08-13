@@ -1,6 +1,6 @@
 {
-  "name": "node-przelewy24",
-  "version": "2.2.0",
+  "name": "@mrboombastic/node-przelewy24",
+  "version": "2.2.1",
   "description": "A simple library for connecting przelewy24 service",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -26,8 +26,7 @@
     "api"
   ],
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   },
   "author": "Ingame, MrBoombastic",
   "license": "MIT",

@@ -11,7 +11,7 @@ No ugly or useless empty documentation. Reading [src/p24/P24.ts](src/p24/P24.ts)
 ## Installation
 
 ```bash
-npm install @mrboombastic/node-przelewy24 # Yes, this defaults to GitHub.com because why not... 
+npm install @MrBoombastic/node-przelewy24
 ```
 
 ## Examples
