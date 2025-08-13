@@ -35,8 +35,6 @@ jobs:
           cache: 'yarn'
       - run: yarn install --frozen-lockfile
       - run: yarn build
-      - run: |
-          npm pkg set publishConfig.registry="https://npm.pkg.github.com/"
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -56,8 +54,6 @@ jobs:
           cache: 'yarn'
       - run: yarn install --frozen-lockfile
       - run: yarn build
-      - run: |
-          npm pkg set publishConfig.registry="https://registry.npmjs.org/"
       - run: yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
