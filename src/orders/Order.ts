@@ -18,7 +18,7 @@ export interface Order {
     sessionId: string,
 
     /**
-     * Transaction amount expressed in lowest currency unit, e.g. 1.23 PLN = 123
+     * Transaction amount expressed in the lowest currency unit, e.g., 1.23 PLN = 123
      *
      * @type {number}
      * @memberof Order
@@ -87,7 +87,7 @@ export interface Order {
      * @type {Country}
      * @memberof Order
      */
-    country: Country,
+    country: Country | string,
 
     /**
      * Customer's telephone in the following format: 481321132123
@@ -98,12 +98,12 @@ export interface Order {
     phone?: string,
 
     /**
-     * One of following language codes according to ISO 639-1: bg, cs, de, en, es, fr, hr, hu, it, nl, pl, pt, se, sk
+     * One of the following language codes according to ISO 639-1: bg, cs, de, en, es, fr, hr, hu, it, nl, pl, pt, se, sk, ro.
      *
      * @type {Language}
      * @memberof Order
      */
-    language: Language,
+    language: Language | string,
 
     /**
      * Payment method ID. List of payment methods provided in the panel or available through API
@@ -114,7 +114,7 @@ export interface Order {
     method?: number,
 
     /**
-     * URL address to which customer will be redirected when transaction is complete
+     * URL address to which the customer will be redirected when the transaction is complete
      *
      * @type {string}
      * @memberof Order
@@ -122,7 +122,7 @@ export interface Order {
     urlReturn: string,
 
     /**
-     * URL address to which transaction status will be send
+     * URL address to which transaction status will be sent
      *
      * @type {string}
      * @memberof Order
@@ -130,7 +130,7 @@ export interface Order {
     urlStatus?: string,
 
     /**
-     * Time limit for transaction process, 0 - no limit, max. 99 (in minutes)
+     * Time limit for a transaction process, 0 - no limit, max. 99 (in minutes)
      *
      * @type {number}
      * @memberof Order
@@ -146,7 +146,7 @@ export interface Order {
     channel?: Channel,
 
     /**
-     * Parameter determines wheter a user should wait for result of the transaction in the transaction
+     * Parameter determines whether a user should wait for a result of the transaction in the transaction
      * service and be redirected back to the shop upon receiving confirmation or be redirected back to the shop immediately after payment.
      *
      * @type {boolean}
@@ -156,10 +156,16 @@ export interface Order {
 
     /**
      * Acceptance of Przelewy24 regulations:
+     *
      * false – display consent on p24 website (default),
+     *
      * true – consent granted, do not display.
-     * In case the "true" parameter is sent, the consent – worded as follows – must be displayed on the Partner’s website: "I hereby state that I have read the regulations and information obligation of ”Przelewy24”.
-     * Under words regulations and information obligation there must be hyperlinks redirecting to websites with these documents. The checkbox must not be ticked by default.
+     *
+     * In case the "true" parameter is sent, the consent –
+     * worded as follows – must be displayed on the Partner’s website:
+     * "I hereby state that I have read the regulations and information obligation of Przelewy24."
+     * Under words regulations and information obligation there must be hyperlinks redirecting to websites with these documents.
+     * The checkbox must not be ticked by default.
      *
      * @type {boolean}
      * @memberof Order
@@ -175,7 +181,7 @@ export interface Order {
     shipping?: number,
 
     /**
-     * Description forwarded to transfer's description (not in every payment methods).
+     * Description forwarded to transfer's description (not in every payment method).
      *
      * @type {string}
      * @memberof Order
@@ -184,7 +190,8 @@ export interface Order {
 
     /**
      * The parameter is necessary while using SDK libraries.
-     * The value passed in mobileLib parameter is always 1 and value passed in sdkVersion determines which version of library should be used.
+     * The value passed in mobileLib parameter is always 1,
+     * and the value passed in sdkVersion determines which version of a library should be used.
      *
      * @type {number}
      * @memberof Order
@@ -192,7 +199,7 @@ export interface Order {
     mobileLib?: number,
 
     /**
-     * Version of mobile library. Determines if transaction is mobile.
+     * Version of a mobile library. Determines if the transaction is mobile.
      *
      * @type {string}
      * @memberof Order
@@ -208,7 +215,7 @@ export interface Order {
     encoding?: Encoding,
 
     /**
-     * Special parameter for some payment flows e.g. BLIK and Card one-click.
+     * Special parameter for some payment flows e.g., BLIK and Card one-click.
      *
      * @type {string}
      * @memberof Order
