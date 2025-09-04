@@ -11,12 +11,14 @@ import {
     EndpointTestAccess,
     EndpointTransactionRegister,
     EndpointTransactionRequest,
+    EndpointTransactionStatus,
     EndpointTransactionVerify,
     ProductionUrl,
     SandboxUrl
 } from './endpoints';
 import {NotificationRequest, Verification, VerificationData} from '../verify';
 import {RefundRequest, RefundResult} from '../refund';
+import {GetTransactionData} from "../orders/GetTransaction";
 
 /**
  * Represents a P24 payment system
@@ -177,6 +179,29 @@ export class P24 {
             const {data} = await this.client.put(EndpointTransactionVerify, verificationData)
             const result = <SuccessResponse<VerificationData>>data
             return result.data.status === 'success'
+        } catch (error: any) {
+            if (error.response && error.response.data) {
+                const resp = <ErrorResponse<string>>error.response.data
+                throw new P24Error(resp.error, resp.code)
+            }
+            throw new P24Error(`Unknown Error ${error}`, -1)
+        }
+    }
+
+
+    /**
+     * Get information about the transaction
+     *
+     * @param {sessionId} sessionId of transaction
+     * @returns {Promise<GetTransactionData>}
+     * @throws {P24Error}
+     * @memberof P24
+     */
+    public async getTransaction(sessionId: string): Promise<GetTransactionData> {
+        try {
+            const {data} = await this.client.get(EndpointTransactionStatus + `/${sessionId}`)
+            const result = <SuccessResponse<GetTransactionData>>data
+            return result.data
         } catch (error: any) {
             if (error.response && error.response.data) {
                 const resp = <ErrorResponse<string>>error.response.data

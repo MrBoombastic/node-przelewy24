@@ -26,7 +26,8 @@ import {
     Country,
     Language,
     NotificationRequest,
-    Verification
+    Verification,
+    Status
 } from "node-przelewy24";
 ```
 
@@ -127,6 +128,14 @@ const ref = {
 
 const result = await p24.refund(ref)
 console.log(result) // returns a SuccessResponse<RefundResult[]> where you can find about each refund request in array
+```
+
+### Getting transaction status by sessionId
+
+```ts
+const result = await p24.getTransaction("sessionId")
+console.log(result) // returns a SuccessResponse<GetTransactionData>
+console.log(result.status === Status.SUCCESS)
 ```
 
 ### Validate IP
