@@ -14,6 +14,14 @@ export interface P24Options {
     sandbox?: boolean
 
     /**
+     * Display requests and responses in console
+     *
+     * @type {boolean}
+     * @memberof P24Options
+     */
+    debug?: boolean
+
+    /**
      * Basically an account ID
      *
      * @type {number}

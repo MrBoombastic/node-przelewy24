@@ -72,6 +72,17 @@ export class P24 {
                 password: this.options.apiKey
             }
         });
+
+        if (this.options.debug) {
+            this.client.interceptors.request.use(req => {
+                console.log('[P24 DEBUG] Request:', req.data);
+                return req;
+            });
+            this.client.interceptors.response.use(res => {
+                console.log('[P24 DEBUG] Response:', res.data);
+                return res;
+            });
+        }
     }
 
     /**
