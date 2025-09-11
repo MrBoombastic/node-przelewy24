@@ -53,5 +53,6 @@ export enum PaymentMethod {
 
 export enum Status {
     NEW = 0,
+    INVALID_AMOUNT = 1,
     SUCCESS = 2,
 }
