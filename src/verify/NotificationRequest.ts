@@ -1,4 +1,4 @@
-import {Country, RiskScore} from "../enums";
+import {Country, PaymentMethod, RiskScore} from "../enums";
 
 /**
  * Notification request
@@ -119,10 +119,10 @@ export interface CardNotificationRequest {
     /**
      * Payment method used by a customer
      *
-     * @type {number}
+     * @type {PaymentMethod}
      * @memberof CardNotificationRequest
      */
-    method: number;
+    method: PaymentMethod;
 
     /**
      * Reference card ID

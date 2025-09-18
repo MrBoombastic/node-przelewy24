@@ -32,6 +32,7 @@ export enum PaymentMethod {
     APPLEPAY = 239,
     CARD = 241,
     MBANK_MTRANSFER = 243,
+    GOOGLE_PAY_SANDBOX = 264, // Don't even ask...
     MBANK_ITP = 270,
     ING_BANK_SLASKI_ITP = 271,
     BNP_PARIBAS_ITP = 272,

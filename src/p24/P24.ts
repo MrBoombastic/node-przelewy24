@@ -224,14 +224,16 @@ export class P24 {
             sign: undefined,
             crc: this.options.crcKey
         }
-        const sign = calculateSHA384(JSON.stringify(notificationHash))
-        return sign === notificationRequest.sign
+        return calculateSHA384(JSON.stringify(notificationHash)) === notificationRequest.sign
     }
 
     /**
      *  Verify card notification with CRC Key. Doesn't work with BLIK notifications - use the appropriate method
+     *
+     *  @param {CardNotificationRequest} notificationRequest
+     *  @returns {boolean}
+     *  @memberof P24
      */
-
     public verifyCardNotification(notificationRequest: CardNotificationRequest): boolean {
         const notificationHash = {
             ...notificationRequest,
@@ -239,8 +241,7 @@ export class P24 {
             cardType: undefined,
             crc: this.options.crcKey
         }
-        const sign = calculateSHA384(JSON.stringify(notificationHash))
-        return sign === notificationRequest.sign
+        return calculateSHA384(JSON.stringify(notificationHash)) === notificationRequest.sign
     }
 
     /**
