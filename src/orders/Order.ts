@@ -122,6 +122,11 @@ export interface Order {
     urlReturn: string,
 
     /**
+     * URL address to which information about card or BLIK payment will be sent
+     */
+    urlCardPaymentNotification: string
+
+    /**
      * URL address to which transaction status will be sent
      *
      * @type {string}

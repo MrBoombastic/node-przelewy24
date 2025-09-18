@@ -80,13 +80,24 @@ console.log(result) // prints a valid url to pay the payment or throws an error
 
 ### Verify Notification
 
-P24 system will send you a notification to the `urlStatus` provided in
+P24 will send you a notification to the `urlStatus` provided in
 transaction order. You need to **verify** this Notification request before actually **Verify Transaction**
 
 ```typescript
 const verify: NotificationRequest = req.body
 const result = p24.verifyNotification(verify)
-console.log(result) // true when the Notification is valid
+console.log(result) // true when the notification is valid
+```
+
+### Verify Card Notification
+
+P24 can send you a notification to the `urlCardPaymentNotification` provided optionally in transaction order.
+This is different from BLIK notification, although it uses the same parameter.
+
+```typescript
+const verify: CardNotificationRequest = req.body
+const result = p24.verifyCardNotification(verify)
+console.log(result) // true when the notification is valid
 ```
 
 ### Verify a transaction with P24

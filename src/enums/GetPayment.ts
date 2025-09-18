@@ -43,16 +43,3 @@ export enum PaymentMethod {
     VISA_MOBILE = 282,
     PRZELEWY24_RATY = 303
 }
-
-/**
- * Transaction states. No mention in API docs
- * @export
- * @enum {number}
- * @memberOf GetTransactionData
- */
-
-export enum Status {
-    NEW = 0,
-    INVALID_AMOUNT = 1,
-    SUCCESS = 2,
-}

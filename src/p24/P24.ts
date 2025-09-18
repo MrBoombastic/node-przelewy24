@@ -16,7 +16,7 @@ import {
     ProductionUrl,
     SandboxUrl
 } from './endpoints';
-import {NotificationRequest, Verification, VerificationData} from '../verify';
+import {CardNotificationRequest, NotificationRequest, Verification, VerificationData} from '../verify';
 import {RefundRequest, RefundResult} from '../refund';
 import {GetTransactionData} from "../orders/GetTransaction";
 
@@ -212,7 +212,7 @@ export class P24 {
     }
 
     /**
-     * Verify notification transaction with our CRC Key
+     * Verify transaction notification with CRC Key. Doesn't work with card/BLIK notifications - use appropriate methods
      *
      * @param {NotificationRequest} notificationRequest
      * @returns {boolean}
@@ -222,6 +222,21 @@ export class P24 {
         const notificationHash = {
             ...notificationRequest,
             sign: undefined,
+            crc: this.options.crcKey
+        }
+        const sign = calculateSHA384(JSON.stringify(notificationHash))
+        return sign === notificationRequest.sign
+    }
+
+    /**
+     *  Verify card notification with CRC Key. Doesn't work with BLIK notifications - use the appropriate method
+     */
+
+    public verifyCardNotification(notificationRequest: CardNotificationRequest): boolean {
+        const notificationHash = {
+            ...notificationRequest,
+            sign: undefined,
+            cardType: undefined,
             crc: this.options.crcKey
         }
         const sign = calculateSHA384(JSON.stringify(notificationHash))
