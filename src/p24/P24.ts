@@ -7,6 +7,7 @@ import {BaseParameters} from './BaseParameters';
 import {calculateSHA384} from '../utils/hash';
 import {Order, OrderCreatedData, Transaction} from '../orders';
 import {
+    EndpointCharge,
     EndpointRefund,
     EndpointTestAccess,
     EndpointTransactionRegister,
@@ -19,6 +20,7 @@ import {
 import {CardNotificationRequest, NotificationRequest, Verification, VerificationData} from '../verify';
 import {RefundRequest, RefundResult} from '../refund';
 import {GetTransactionData} from "../orders/GetTransaction";
+import {ChargeRequest, ChargeResult} from "../charge";
 
 /**
  * Represents a P24 payment system
@@ -77,7 +79,7 @@ export class P24 {
 
         if (this.options.debug) {
             this.client.interceptors.request.use(req => {
-                console.log('[P24 DEBUG] Request:', req.data);
+                console.log('[P24 DEBUG] Request:', `${req.baseURL}${req.url}\n`, req.data);
                 return req;
             });
             this.client.interceptors.response.use(res => {
@@ -262,6 +264,20 @@ export class P24 {
                     const resp = <ErrorResponse<RefundResult[]>>error.response.data
                     throw new P24Error('Refund Conflict', resp.code, resp.error)
                 }
+                const resp = <ErrorResponse<string>>error.response.data
+                throw new P24Error(resp.error, resp.code)
+            }
+            throw new P24Error(`Unknown Error ${error}`, -1)
+        }
+    }
+
+    public async charge(chargeRequest: ChargeRequest): Promise<ChargeResult> {
+        try {
+            const {data} = await this.client.post(EndpointCharge, chargeRequest)
+            const resp = <SuccessResponse<ChargeResult>>data
+            return resp.data
+        } catch (error: any) {
+            if (error.response && error.response.data) {
                 const resp = <ErrorResponse<string>>error.response.data
                 throw new P24Error(resp.error, resp.code)
             }
