@@ -149,6 +149,13 @@ console.log(result) // returns a SuccessResponse<GetTransactionData>
 console.log(result.status === Status.SUCCESS)
 ```
 
+### Charging card
+
+```ts
+const result = await p24.chargeCard("XXXXXXXXXX-XXXXXX-XXXXXX-XXXXXXXXXX")
+console.log(result.orderId) // returns a SuccessResponse<ChargeCardResult>
+```
+
 ### Validate IP
 
 Library provides a method to validate IP addresses with P24 backends.

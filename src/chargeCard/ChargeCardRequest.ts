@@ -2,13 +2,13 @@
  * Charge request
  *
  * @export
- * @interface ChargeRequest
+ * @interface ChargeCardRequest
  */
-export interface ChargeRequest {
+export interface ChargeCardRequest {
     /**
      * Token obtained from the registering transaction
      * @type {string}
-     * @memberof ChargeRequest
+     * @memberof ChargeCardRequest
      */
     token: string;
 }

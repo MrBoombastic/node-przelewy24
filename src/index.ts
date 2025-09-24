@@ -5,4 +5,4 @@ export * from './p24';
 export * from './refund';
 export * from './responses';
 export * from './verify';
-export * from './charge';
+export * from './chargeCard';

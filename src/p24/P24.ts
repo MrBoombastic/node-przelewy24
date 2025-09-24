@@ -20,7 +20,7 @@ import {
 import {CardNotificationRequest, NotificationRequest, Verification, VerificationData} from '../verify';
 import {RefundRequest, RefundResult} from '../refund';
 import {GetTransactionData} from "../orders/GetTransaction";
-import {ChargeRequest, ChargeResult} from "../charge";
+import {ChargeCardRequest, ChargeCardResult} from "../chargeCard";
 
 /**
  * Represents a P24 payment system
@@ -271,10 +271,17 @@ export class P24 {
         }
     }
 
-    public async charge(chargeRequest: ChargeRequest): Promise<ChargeResult> {
+    /**
+     * Charge card using order token
+     *
+     * @param {ChargeCardRequest} chargeCardRequest
+     * @returns {Promise<ChargeCardResult>}
+     * @memberof P24
+     */
+    public async chargeCard(chargeCardRequest: ChargeCardRequest): Promise<ChargeCardResult> {
         try {
-            const {data} = await this.client.post(EndpointCharge, chargeRequest)
-            const resp = <SuccessResponse<ChargeResult>>data
+            const {data} = await this.client.post(EndpointCharge, chargeCardRequest)
+            const resp = <SuccessResponse<ChargeCardResult>>data
             return resp.data
         } catch (error: any) {
             if (error.response && error.response.data) {
