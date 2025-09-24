@@ -24,7 +24,7 @@ export interface GetTransactionData {
     sessionId: string;
 
     /**
-     * Transaction status. Seems to be always 0...
+     * Transaction status.
      *
      * @type {Status}
      * @memberof Transaction
