@@ -51,10 +51,9 @@ export enum Language {
  * @enum {number}
  * @memberOf GetTransactionData
  */
-
 export enum Status {
     NEW = 0,
-    INVALID_AMOUNT = 1,
+    INVALID_AMOUNT = 1, // No idea if that's accurate
     SUCCESS = 2,
 }
 
