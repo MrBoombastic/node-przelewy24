@@ -59,4 +59,4 @@ jobs:
           cache: 'yarn'
       - run: yarn install --frozen-lockfile
       - run: yarn build
-      - run: npm publish --provenance
+      - run: npm publish

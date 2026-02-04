@@ -1,7 +1,7 @@
 {
   "name": "@mrboombastic/node-przelewy24",
-  "version": "2.5.0",
-  "description": "A simple library for connecting przelewy24 service",
+  "version": "2.5.1",
+  "description": "A simple library for connecting Przelewy24 service",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
