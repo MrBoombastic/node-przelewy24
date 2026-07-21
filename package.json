@@ -28,14 +28,19 @@
   "publishConfig": {
     "access": "public"
   },
-  "author": "Ingame, MrBoombastic",
+  "author": "Ingame",
+  "contributors": [
+    {
+      "name": "MrBoombastic"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/MrBoombastic/node-przelewy24/issues"
   },
   "homepage": "https://github.com/MrBoombastic/node-przelewy24#readme",
   "devDependencies": {
-    "@types/node": "^25.2.0",
+    "@types/node": "^26.1.1",
     "typescript": "^7.0.2"
   },
   "dependencies": {
