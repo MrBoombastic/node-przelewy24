@@ -4,6 +4,9 @@
   "description": "A simple library for connecting Przelewy24 service",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "prepare": "yarn run build",
     "prepublishOnly": "yarn test && yarn build:check",
