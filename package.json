@@ -1,6 +1,6 @@
 {
   "name": "@mrboombastic/node-przelewy24",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "description": "A simple library for connecting Przelewy24 service",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,7 +36,7 @@
   "homepage": "https://github.com/MrBoombastic/node-przelewy24#readme",
   "devDependencies": {
     "@types/node": "^25.2.0",
-    "typescript": "^5.9.2"
+    "typescript": "^7.0.2"
   },
   "dependencies": {
     "axios": "^1.12.2"
