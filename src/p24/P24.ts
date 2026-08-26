@@ -1,7 +1,8 @@
+import {isIP} from 'net';
 import Axios, {AxiosInstance} from 'axios';
 import {P24Error} from '../errors';
 import {P24Options} from './P24Options';
-import {validIps} from './ips';
+import {blockList} from './ips';
 import {ErrorResponse, SuccessResponse} from '../responses';
 import {BaseParameters} from './BaseParameters';
 import {calculateSHA384} from '../utils/hash';
@@ -301,6 +302,11 @@ export class P24 {
      * @memberof P24
      */
     public static isIpValid(ip: string): boolean {
-        return validIps.includes(ip)
+        if (typeof ip !== 'string') {
+            return false;
+        }
+        const ipType = isIP(ip);
+        if (ipType === 0) return false;
+        return blockList.check(ip, ipType === 6 ? 'ipv6' : 'ipv4');
     }
 }

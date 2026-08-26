@@ -1,6 +1,6 @@
 {
   "name": "@mrboombastic/node-przelewy24",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "A simple library for connecting Przelewy24 service",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     "build": "tsc",
     "build:check": "tsc --noEmit",
     "watch": "tsc --watch",
-    "test": "echo 'no tests yet'"
+    "test": "node --test test/**/*.test.mjs"
   },
   "repository": {
     "type": "git",
