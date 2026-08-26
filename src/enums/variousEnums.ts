@@ -46,15 +46,16 @@ export enum Language {
 }
 
 /**
- * Transaction states. No mention in API docs
+ * Transaction states.
  * @export
  * @enum {number}
  * @memberOf GetTransactionData
  */
 export enum Status {
-    NEW = 0,
-    INVALID_AMOUNT = 1, // No idea if that's accurate
-    SUCCESS = 2,
+    NO_PAYMENT = 0,
+    ADVANCE_PAYMENT = 1,
+    PAYMENT_MADE = 2,
+    PAYMENT_RETURNED = 3
 }
 
 /**

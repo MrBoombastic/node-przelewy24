@@ -208,7 +208,7 @@ export interface CardNotificationRequest {
 
 
     /**
-     * Card type/issuer. Not documented
+     * Card type/issuer (VISA/ECMC [?])
      *
      * @type {string}
      * @memberof CardNotificationRequest
