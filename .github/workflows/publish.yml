@@ -20,7 +20,7 @@ jobs:
           ref: ${{ github.event.release.tag_name }}
       - uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version: 26
           package-manager-cache: false
       - name: Verify release version
         env:
@@ -47,7 +47,7 @@ jobs:
           ref: ${{ github.event.release.tag_name }}
       - uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version: 26
           package-manager-cache: false
       - run: yarn install --frozen-lockfile
       - run: yarn build
@@ -68,7 +68,7 @@ jobs:
           ref: ${{ github.event.release.tag_name }}
       - uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version: 26
           registry-url: https://npm.pkg.github.com/
           scope: '@mrboombastic'
           package-manager-cache: false
